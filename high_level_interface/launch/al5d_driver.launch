@@ -1,0 +1,5 @@
+<launch>
+    <arg name="serial_port" default="/dev/ttyUSB0"/>
+    <node name="al5d_low_level_driver" pkg="al5d_low_level_driver" type="al5d_low_level_driver" args="$(arg serial_port)" output="screen"/>
+    <node name="high_level_interface" pkg="high_level_interface" type="high_level_interface" args="AL5D" output="screen"/>
+</launch>

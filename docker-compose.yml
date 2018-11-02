@@ -1,0 +1,52 @@
+version: '2'
+
+# ╔════════════════════╗
+# ║ CONTAINER SETTINGS ║
+# ╚════════════════════╝
+services:
+  # ┌─────────┐
+  # │ ROSCORE │
+  # └─────────┘
+  roscore:
+    image: osrf/ros:lunar-desktop-full
+    stdin_open: true # Opens the stdin to the host
+    command: ["roscore"]
+    networks:
+      - rosnet
+    
+  # ┌───────────────────────────┐
+  # │ROBOT CONTROL: AL5D-DRIVER │
+  # └───────────────────────────┘
+  # Remember to run `xhost +local:root` in your shell on your host machine 
+  # every time you need to run the GUI.
+  al5d_low_level_driver:
+    build: ./al5d_low_level_driver      # Location of the Dockerfile.
+    image: al5d_low_level_driver:latest # Name of the image to build.
+    stdin_open: true
+    privileged: true
+    environment: 
+      - ROS_MASTER_URI=http://roscore:11311 # Connecting to the roscore
+      - ROS_HOSTNAME=al5d_low_level_driver  # ROS package name
+      - DISPLAY # Support for the display
+      - QT_X11_NO_MITSHM=1 # Required to access QT GUI
+      - TERM=xterm
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # Sharing the X-server socket
+      - /dev/pts:/dev/pts:rw
+    networks:
+      - rosnet
+    depends_on: 
+      - roscore
+    devices:
+      - /dev/dri:/dev/dri # Support for intel hardware acceleration. See:
+                  # http://wiki.ros.org/docker/Tutorials/Hardware%20Acceleration
+
+
+# ╔═════════════════════════════════════════════════════════════════════╗
+# ║                          NETWORK SETTINGS                           ║
+# ╠═════════════════════════════════════════════════════════════════════╣
+# ║ https://docs.docker.com/compose/networking/#specify-custom-networks ║
+# ╚═════════════════════════════════════════════════════════════════════╝
+networks: 
+  rosnet:
+    driver: bridge

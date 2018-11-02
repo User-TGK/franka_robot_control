@@ -1,0 +1,11 @@
+## Goal definition
+## The speed factor MUST be between 0.0 and 1.0 where 1.0 means full speed (and will most likely cause discontinuity errors).
+DoFConfiguration[] configuration
+float32 speedFactor
+---
+## Result definition
+DoFConfiguration[] resultConfiguration
+---
+## Feedback definition
+DoFConfiguration[] interimConfiguration
+bool moving

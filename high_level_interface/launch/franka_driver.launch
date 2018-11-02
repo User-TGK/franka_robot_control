@@ -1,0 +1,5 @@
+<launch>
+    <arg name="hostname" default="192.168.10.1"/>
+    <node name="franka_low_level_driver" pkg="franka_low_level_driver" type="franka_low_level_driver" args="$(arg hostname)" output="screen"/>
+    <node name="high_level_interface" pkg="high_level_interface" type="high_level_interface" args="FRANKA" output="screen"/>
+</launch>

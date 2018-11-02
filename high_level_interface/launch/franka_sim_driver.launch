@@ -1,0 +1,5 @@
+<launch>
+    <arg name="serial_port" default="/home/ties/dev/ttyS21"/>
+    <node name="franka_low_level_simulation_driver" pkg="franka_low_level_simulation_driver" type="franka_low_level_simulation_driver" args="$(arg serial_port)" output="screen"/>
+    <node name="high_level_interface" pkg="high_level_interface" type="high_level_interface" args="FRANKA_SIMULATION" output="screen"/>
+</launch>

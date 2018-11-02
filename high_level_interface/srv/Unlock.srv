@@ -1,0 +1,7 @@
+## Set the unlock request to true if you want to unlock the robotic arm after an 
+## emergency stop was called.
+bool unlock
+---
+## Will return false if the robotic arm could not be unlocked, for example if the interface
+## was not in the "Locked" state
+bool success

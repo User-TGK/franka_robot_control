@@ -1,0 +1,8 @@
+## Set to a supported preprogrammed position. Currently supported:
+## 1. PARK
+## 2. STRAIGHT
+string position
+---
+## True if the robotic arm is successfully moving to the preprogrammed position,
+## false if the actionserver declined the preprogrammed position and is not executing it
+bool success

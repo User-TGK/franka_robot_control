@@ -1,0 +1,5 @@
+## If set to true the gripper will open as far as possible
+## Else the gripper will move to a pre set distance (close)
+bool open
+---
+bool success

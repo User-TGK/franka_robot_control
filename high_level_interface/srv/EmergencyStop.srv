@@ -1,0 +1,5 @@
+## Set true if you want the robotic arm to stop immediately
+bool stop
+---
+## The last known position of the robotic arm
+DoFConfiguration[] resultConfiguration

@@ -1,0 +1,6 @@
+## Service that will update the configuration for the manual preprogrammed position to the current position
+## if the update boolean is set to true
+bool update
+---
+bool success
+DoFConfiguration[] newManualConfiguration ## The new configuration of the MANUAL position

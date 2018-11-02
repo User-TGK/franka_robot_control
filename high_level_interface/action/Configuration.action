@@ -1,0 +1,11 @@
+## Goal definition
+DoFConfiguration[] configuration
+uint16 time
+float32 speedFactor
+---
+## Result definition
+DoFConfiguration[] resultConfiguration
+---
+## Feedback definition
+DoFConfiguration[] interimConfiguration
+bool moving
